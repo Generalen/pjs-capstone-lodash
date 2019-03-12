@@ -1,0 +1,118 @@
+// Our libary 
+let _ = {
+
+clamp(number, lowerBound, upperBound) {
+  if (number < lowerBound){
+    return lowerBound;
+  } else if  (number > upperBound){
+    return upperBound;
+  } else {
+    return number;
+  }    
+},
+inRange(inputNumber, inputStart, inputEnd){
+  number = inputNumber;
+  start = inputStart;
+  end = inputEnd;
+  if (end === undefined){
+    end = start;
+    start = 0;
+  }
+    
+  if (start > end){
+    start = end;
+    end = inputStart
+  }  
+ if (number < start){
+   return false;
+ } else if (number >= end){
+   return false;
+ } else if (number > start && number < end){
+   return true;
+ } 
+ },
+  words(string) {
+    words = string.split(' ');
+    return words;
+  },
+  
+  
+  pad(string, length) {
+     if (length <= string.length){
+    return string
+  }
+    let startPaddingLength = (Math.floor((length - string.length) / 2));
+                 
+    let endPaddingLength = (length - string.length - startPaddingLength);
+    
+    let paddedString = ' '.repeat(startPaddingLength)+ string + ' '.repeat(endPaddingLength);
+    return paddedString; 
+     },
+  
+  has(object, key){
+     if (object[key] === undefined){
+      return false;
+    } else {
+      return true;
+    }
+    
+  },
+  
+ invert(object){
+  invertedObject = {};
+  for (property in object){
+   invertedObject[object[property]] =        property;
+  } 
+   return invertedObject;
+  },
+  
+  findKey(object, predicate) {
+    for (property in object){
+     value = object[property];
+     predicateReturnValue = predicate(value);
+     if (predicateReturnValue === true){
+       return property;
+     }
+    }
+    return undefined;
+  },
+  drop(array, n){
+    if (n === undefined){
+      n = 1;
+    }
+    droppedArray = array.slice(n)
+    
+    return droppedArray;
+  },
+  
+  dropWhile(array, predicate) {
+    dropWhileArray = [];
+    for (let i = 0; i < array.length; i++) {
+      if (!predicate(array[i], i, array)) {
+        dropWhileArray = this.drop(array, i);
+        return dropWhileArray;
+      }
+    }
+    return dropWhileArray;
+  },
+  
+  chunk(array, size) {
+    if (size === undefined) {
+        size = 1;
+    }
+    arrayChunks = [];
+    for (let i = 0; i < array.length; i += size)		{	
+      arrayChunk = []; 
+      if (i + size <= array.length) {
+      	arrayChunk = array.slice(i, i + size);
+      } else {
+       arrayChunk = array.slice(i, array.lenght); 
+      }
+      arrayChunks.push(arrayChunk);
+    }
+    return arrayChunks;
+  }
+  
+ }
+// Do not write or modify code below this line.
+module.exports = _;
